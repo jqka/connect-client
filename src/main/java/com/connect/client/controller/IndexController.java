@@ -11,10 +11,16 @@ import org.springframework.web.client.RestTemplate;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@RestController
 public class IndexController {
 
     @Autowired
     RestTemplate restTemplate;
+
+    @RequestMapping({"/", "/index"})
+    public void index(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/index.html");
+    }
 
     @RequestMapping(value = "/submit", produces = "text/plain")
     public String submit(@RequestParam String url) {
